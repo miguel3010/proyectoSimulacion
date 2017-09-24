@@ -1,0 +1,39 @@
+<div class="row">
+  <form class="col s12">
+    <div class="row">
+      <h5>Cola:</h5>
+      <app-distribucion *ngIf="params" [(data)]="this.params.dist_cola"></app-distribucion>
+    </div>
+    <div class="row">
+      <h5>Servidor:</h5>
+      <app-distribucion *ngIf="params" [(data)]="params.dist_Server"></app-distribucion>
+    </div>
+
+
+    <div class="row">
+      <div class="col s6">
+        <h5>Unidad de Medida</h5>
+        <div class="input-field col s5">
+          <select  *ngIf="params" [(ngModel)]="params.um_tiempo"   [ngModelOptions]="{standalone: true}" (change)="onSelect()" class="browser-default">
+              <option value="" disabled selected>Choose your option</option>
+            <option value="0">Horas</option>
+            <option value="1">Minutos</option>
+            <option value="2">Segundos</option>
+            </select>
+          <label>Distribución Aleatoria</label>
+        </div>
+      </div>
+
+
+      <div class="col s6">
+        <h5>Número de clientes</h5>
+        <div class="input-field col s6">
+          <input id="num" type="number" *ngIf="params" [(ngModel)]="params.nCliente" [ngModelOptions]="{standalone: true}" (change)="saverange()" class="validate">
+          <label for="num">Número de clientes</label>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<button type="button" (click)="actualizarParametros()" class="btn btn-outline-success">Actualizar Parametros</button>
