@@ -1,6 +1,6 @@
 <div class="row ">
     <div class="input-field col s5">
-        <select id="s1" *ngIf="data"  [(ngModel)]="data.dist" [ngModelOptions]="{standalone: true}" (change)="saverange()">
+        <select id="s1" *ngIf="data"  [(ngModel)]="data.dist" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChanges()">
         <option value="" disabled selected>Escoja una opción</option>
         <option value="0">Normal</option>
         <option value="1">Uniforme</option>
@@ -11,20 +11,20 @@
 
 
     <div *ngIf="data.dist==0" class="input-field col s3 ">
-        <input id="desv" type="number" step="0.1" [value]="data.desv_standar" min="0" class="validate">
+        <input id="desv" type="number" step="0.1" *ngIf="data"  [(ngModel)]="data.desv_standar" min="0" class="validate" (blur)="onChanges()">
         <label for="desv">Desviación Estandar</label>
     </div>
     <div *ngIf="data.dist == 0 || data.dist == 1 " class="input-field col s3 ">
-        <input id="prom" type="number" step="0.1" [value]="data.promedio" class="validate">
+        <input id="prom" type="number" step="0.1" *ngIf="data"  [(ngModel)]="data.promedio" class="validate" (blur)="onChanges()">
         <label for="prom">Promedio</label>
     </div>
 
     <div *ngIf="data.dist == 2" class="input-field col s3 ">
-            <input id="min" type="number" step="0.1" [value]="data.min" class="validate">
+            <input id="min" type="number" step="0.1" *ngIf="data"  [(ngModel)]="data.min" class="validate" (blur)="onChanges()">
             <label for="min">Min</label>
     </div>
     <div *ngIf="data.dist == 2" class="input-field col s3 ">
-            <input id="max" type="number" step="0.1" [value]="data.max" class="validate">
+            <input id="max" type="number" step="0.1" *ngIf="data"  [(ngModel)]="data.max" class="validate" (blur)="onChanges()">
             <label for="max">Max</label>
     </div>
 

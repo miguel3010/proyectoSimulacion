@@ -1,6 +1,6 @@
 import { Distribucion } from './../Model/Distribucion';
-import { Component, OnInit, Input } from '@angular/core';
-import {Parametros} from '../Model/Parametros';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Parametros } from '../Model/Parametros';
 
 @Component({
   selector: 'app-distribucion',
@@ -10,11 +10,15 @@ import {Parametros} from '../Model/Parametros';
 export class DistribucionComponent implements OnInit {
 
   @Input() data: Distribucion;
-
+  @Output() modelChange: EventEmitter<Distribucion> = new EventEmitter();
   constructor() {
-   }
+  }
 
-  ngOnInit() {}
+  onChanges() {
+        this.modelChange.emit(this.data);
+  }
+
+  ngOnInit() { }
 
   saverange() {
     console.log('' + this.data.dist);
