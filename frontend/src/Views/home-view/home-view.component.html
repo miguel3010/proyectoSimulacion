@@ -1,13 +1,26 @@
-  <nav>
-    <div class="nav-wrapper #1565c0 blue darken-3">
-      <a href="#!" class="brand-logo center ">Asignación 3</a>
-      <ul class="left hide-on-med-and-down">
-        <li class="active"><a href="/">Presentación</a></li>
-      </ul>
-    </div>
-  </nav>
-  <div class="container">
-    <app-presentacion></app-presentacion>
-    <button type="button" class="btn btn-outline-success" routerLink="/simulacion"  >Iniciar Simulación</button>
-    <app-autores></app-autores>
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Asignación 3</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link " href="#">Presentación</a>
+      </li>
+    </ul>
   </div>
+</nav>
+
+
+<div class="container">
+  <app-presentacion></app-presentacion>
+  <div class="row" style="margin: 20px;">
+    <div class="col col-xs-12">
+      <button type="button" class="btn btn-outline-success  float-right" routerLink="/simulacion">Iniciar Simulación</button>
+    </div>
+  </div>
+  <app-autores></app-autores>
+</div>

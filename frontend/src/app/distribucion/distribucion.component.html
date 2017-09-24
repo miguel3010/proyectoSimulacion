@@ -1,31 +1,30 @@
-<div class="row ">
-    <div class="input-field col s5">
-        <select id="s1" *ngIf="data"  [(ngModel)]="data.dist" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChanges()">
+<div class="form-group">
+    <label for="disal">Distribución Aleatoria</label>
+    <select id="disal" *ngIf="data" [(ngModel)]="data.dist" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChanges()">
         <option value="" disabled selected>Escoja una opción</option>
         <option value="0">Normal</option>
         <option value="1">Uniforme</option>
         <option value="2">Poisson</option>
     </select>
-        <label>Distribución Aleatoria</label>
-    </div>
+</div>
 
 
-    <div *ngIf="data.dist==0" class="input-field col s3 ">
-        <input id="desv" type="number" step="0.1" *ngIf="data"  [(ngModel)]="data.desv_standar" min="0" class="validate" (blur)="onChanges()">
-        <label for="desv">Desviación Estandar</label>
-    </div>
-    <div *ngIf="data.dist == 0 || data.dist == 1 " class="input-field col s3 ">
-        <input id="prom" type="number" step="0.1" *ngIf="data"  [(ngModel)]="data.promedio" class="validate" (blur)="onChanges()">
-        <label for="prom">Promedio</label>
-    </div>
+<div *ngIf="data.dist==0" class="form-group">
+    <label for="desvest">Desviación Estandar</label>
+    <input type="email" class="form-control" id="desvest" type="number" step="0.1" *ngIf="data" [(ngModel)]="data.desv_standar"
+        min="0" class="validate" (blur)="onChanges()">
+</div>
+<div *ngIf="data.dist == 0 || data.dist == 1 " class="form-group">
+    <label for="desvest">Promedio</label>
+    <input class="form-control" id="desvest" type="number" step="0.1" *ngIf="data" [(ngModel)]="data.promedio" class="validate"
+        (blur)="onChanges()">
+</div>
 
-    <div *ngIf="data.dist == 2" class="input-field col s3 ">
-            <input id="min" type="number" step="0.1" *ngIf="data"  [(ngModel)]="data.min" class="validate" (blur)="onChanges()">
-            <label for="min">Min</label>
-    </div>
-    <div *ngIf="data.dist == 2" class="input-field col s3 ">
-            <input id="max" type="number" step="0.1" *ngIf="data"  [(ngModel)]="data.max" class="validate" (blur)="onChanges()">
-            <label for="max">Max</label>
-    </div>
-
+<div *ngIf="data.dist == 2" class="form-group">
+    <label for="min">Min</label>
+    <input id="min" type="number" step="0.1" *ngIf="data" [(ngModel)]="data.min" class="validate" (blur)="onChanges()">
+</div>
+<div *ngIf="data.dist == 2" class="form-group">
+    <label for="max">Max</label>
+    <input id="max" type="number" step="0.1" *ngIf="data" [(ngModel)]="data.max" class="validate" (blur)="onChanges()">
 </div>

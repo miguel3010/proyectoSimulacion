@@ -25,7 +25,7 @@ def get_Parameters():
 @app.route('/parametros', methods=['POST']) 
 def post_Parameters(): 
     p = Parametros()
-    p.fromJSON( request.data)    
+    p.fromJSON(request.data)    
     global _parameters
     _parameters = p 
     return "" 
