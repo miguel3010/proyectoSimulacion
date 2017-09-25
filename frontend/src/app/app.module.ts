@@ -13,6 +13,8 @@ import { EstadisticasComponent } from '../Views/estadisticas/estadisticas.compon
 import { RouterModule, Routes } from '@angular/router';
 import { DistribucionComponent } from './distribucion/distribucion.component';
 import {HttpModule} from '@angular/http';
+import { SimGraficaComponent } from './sim-grafica/sim-grafica.component'; 
+import { PanelListadoComponent } from './panel-listado/panel-listado.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeViewComponent },
@@ -29,7 +31,9 @@ const appRoutes: Routes = [
     PresentacionComponent,
     ParametrosComponent,
     AutoresComponent,
-    DistribucionComponent
+    DistribucionComponent,
+    SimGraficaComponent,
+    PanelListadoComponent
   ],
   imports: [
     BrowserModule,
