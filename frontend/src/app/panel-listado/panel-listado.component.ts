@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { SimGraficaComponent } from './../sim-grafica/sim-grafica.component';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-panel-listado',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanelListadoComponent implements OnInit {
 
+  @Input() grafico: SimGraficaComponent;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  addnewClient() {
+    this.grafico.push();
+  }
+
+  removeClient() {
+    this.grafico.pop();
   }
 
 }

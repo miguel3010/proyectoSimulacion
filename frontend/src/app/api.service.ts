@@ -14,4 +14,12 @@ export class ApiService {
   post_Parameters(data: Parametros) {
     return this.http.post(this.baseURL + '/parametros', JSON.stringify(data));
   }
+
+  simular() {
+    return this.http.get(this.baseURL + '/simular');
+  }
+
+
+
+
 }

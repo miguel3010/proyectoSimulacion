@@ -12,6 +12,15 @@ export class SimGraficaComponent implements AfterViewInit {
   context: CanvasRenderingContext2D;
 
   cola: number;
+  refpointX: number;
+  refpointY: number;
+  circleRadio: number;
+  clientColor = '#388E3C';
+  serverColor = '#FF6F00';
+  spacesize: number;
+  interlineado: number;
+  verticalSpaces: number;
+  horizontalSpaces: number;
 
   ngAfterViewInit() { // wait for the view to init before using the element
 
@@ -21,26 +30,67 @@ export class SimGraficaComponent implements AfterViewInit {
     this.context.canvas.height = this.height;
 
     this.cola = 0;
-    console.log('height ' + this.height + ' width ' + this.width);
+    this.circleRadio = this.height * 0.03;
+    this.refpointY = (this.height * 0.10) * 2 - this.circleRadio;
+    this.refpointX = this.width / 2;
+    this.spacesize = this.circleRadio * 2;
+    this.interlineado = this.circleRadio / 2;
 
-    this.drawpref();
-
+    this.horizontalSpaces = (this.width * 0.90) / (this.spacesize + this.interlineado);
+    this.verticalSpaces = (this.height - this.refpointY) / (this.spacesize + this.interlineado);
+    this.update();
   }
   update() {
-    
-  }
+    this.clearall();
+    this.drawpref();
 
-  animPOP() {
-    
+    for (let index = 1; index <= this.cola; index++) {
+      const pos: Point = this.getClientPosition(index);
+      this.drawCircle(pos.x, pos.y, this.circleRadio, this.clientColor);
+    }
+  }
+  getClientPosition(i) {
+    const p: Point = new Point();
+    if (i === 1) {
+      p.y = this.refpointY;
+      p.x = this.refpointX;
+    } else if (i - 1 <= this.horizontalSpaces / 2) {
+      i--;
+      p.y = this.refpointY + this.spacesize * 2;
+      p.x = this.refpointX + ((this.spacesize * (i - 1)) + (this.interlineado * (i - 1)));
+    } else {
+      i--;
+      let e = i + 1 - this.horizontalSpaces / 2;
+      e = e / this.horizontalSpaces;
+
+      p.y = (this.refpointY + this.spacesize * 2) + (this.spacesize + this.interlineado * 3) * Math.trunc(e + 1);
+
+      if (Math.trunc(e % 2) === 0) {
+
+        let ex_izq = Math.floor(this.horizontalSpaces / 2);
+        let pos_max = this.refpointX + ((this.spacesize * (ex_izq - 1)) + (this.interlineado * (ex_izq - 1)));
+        let ii = i - Math.floor(this.horizontalSpaces / 2) - (Math.trunc(e) * this.horizontalSpaces);
+        p.x = pos_max - ((this.spacesize * (ii - 1)) + (this.interlineado * (ii - 1)));
+
+      } else {
+        let ex_der = Math.floor(this.horizontalSpaces / 2);
+        let pos_max = this.refpointX - ((this.spacesize * (ex_der - 1)) + (this.interlineado * (ex_der - 1)));
+        let ii = i - Math.floor(this.horizontalSpaces / 2) - (Math.trunc(e) * this.horizontalSpaces);
+        p.x = pos_max + ((this.spacesize * (ii)) + (this.interlineado * (ii)));
+      }
+    }
+    return p;
   }
 
   public pop() {
-    this.cola++;
-    this.animPOP();
+    if (this.cola > 0) {
+      this.cola--; 
+      this.update();
+    }
   }
 
   public push() {
-    this.cola--;
+    this.cola++;
     this.update();
   }
 
@@ -54,10 +104,7 @@ export class SimGraficaComponent implements AfterViewInit {
     this.context.strokeStyle = '#1E88E5';
     this.context.stroke();
 
-    this.drawCircle(this.width / 2, (this.height * 0.10) / 2, this.height * 0.03, '#FF6F00');
-
-    this.drawCircle(65, 100, this.height * 0.03, '#388E3C');
-
+    this.drawCircle(this.width / 2, (this.height * 0.10) / 2, this.height * 0.03, this.serverColor);
   }
 
   drawCircle(x, y, radio, color) {
@@ -70,9 +117,13 @@ export class SimGraficaComponent implements AfterViewInit {
     this.context.stroke();
   }
 
-
   clearall() {
     this.context.clearRect(0, 0, this.width, this.height);
   }
 
+}
+
+class Point {
+  public x: number;
+  public y: number;
 }

@@ -1,5 +1,7 @@
 
 import datetime
+import json
+
 class Proceso(object):
     numeroCliente = -1
     t_EntreArribo = -1 # tiempo entre arribos Minutos
@@ -14,3 +16,8 @@ class Proceso(object):
     def __init__(self, nCliente:int):
         self.numeroCliente = nCliente
 
+    def toJSON(self):
+        return json.dumps(self, default = lambda o:o.__dict__, 
+            sort_keys = True, indent = 4)
+
+   

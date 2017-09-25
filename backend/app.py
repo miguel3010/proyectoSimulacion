@@ -3,7 +3,7 @@ from flask import Flask,json, request
 from person import person
 from model.parametros import Parametros
 from model.Estadisticas import Estadisticas
-
+from simulador import Simulador
 
 from flask_cors import CORS  # This is the magic
 app = Flask(__name__)
@@ -30,11 +30,27 @@ def post_Parameters():
     _parameters = p 
     return "" 
 
+@app.route('/simular', methods=['GET', 'POST']) 
+def simular():
+    global _parameters
+    global resultados
+    sim = Simulador
+    resultados = sim().simular(_parameters)
+    response = app.response_class(
+        response = parseListToJSON(resultados), 
+        status = 200, 
+        mimetype = 'application/json'
+    )
+    return response
+
 def parseListToJSON(_list):
     result = []
     for item in _list:
         result.append(json.loads(item.toJSON()))
     return json.dumps(result)
+
+
+
 
 if __name__ == '__main__':
     #webbrowser.open('http://127.0.0.1:5000/')
