@@ -24,11 +24,12 @@
           <button type="button" routerLink="/simulacion" class="btn btn-secondary"><span class="fa fa-refresh"></span></button>
           <button type="button"  routerLink="/estadisticas" class="btn btn-secondary"><span class="fa fa-bar-chart"></span></button>
           <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal" ><span class="fa fa-list-ul"></span></button>
+          <button type="button" (click)="removeClient()" class="btn btn-secondary"><span class="fa fa-refresh"></span></button>
           
         </div>
       </div>
       <div class="col col-md-12">
-        <app-panel-listado [grafico]="grafica" ></app-panel-listado>
+        <app-panel-listado [enProceso]="enProceso" ></app-panel-listado>
       </div>
     </div>
   </div>
@@ -45,7 +46,7 @@
         </div>
         
         <div class="modal-body">
-            <table class="table" style="font-size: 10px;">
+            <table class="table" style="font-size: 10px;overflow-y:scroll;">
                 <thead>
                   <tr>
                     <th>No. Cliente</th>
@@ -59,12 +60,24 @@
                     <th>Longitud de cola </th>
                   </tr>
                 </thead> 
+                <tbody>
+                    <tr *ngFor="let item of procesos">
+                        <td>{{item.numeroCliente}}</td>
+                        <td>{{item.t_EntreArribo}}</td>
+                        <td>{{item.t_servicio}}</td>
+                        <td>{{item.h_arribo}}</td>
+                        <td>{{item.h_servicio}}</td>
+                        <td>{{item.h_f_servicio}}</td>
+                        <td>{{item.t_espera_cola}}</td>
+                        <td>{{item.t_servidor_osicio}}</td>                        
+                        <td>{{item.l_cola}}</td>
+                    </tr>
+                </tbody>
               </table>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+        
       </div>
     </div>
   </div>
+
+  

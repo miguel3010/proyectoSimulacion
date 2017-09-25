@@ -2,7 +2,7 @@
 height: -moz-calc(100vh - 72px);
 height: calc(100vh - 130px); ">
     <div class="card-header">
-      Clientes en cola  <span style="font-size: 15px;" class="badge badge-default">4</span> 
+      Clientes en cola  <span style="font-size: 15px;" class="badge badge-default">{{enProceso.length}}</span> 
     </div>
     <div class="card-block">
         <table class="table" style = "overflow-y:scroll;
@@ -22,6 +22,18 @@ height: calc(100vh - 130px); ">
                 <th>Servidor Ocioso </th>
               </tr>
             </thead> 
+            <tbody>
+                <tr *ngFor="let item of enProceso">
+                    <td>{{item.numeroCliente}}</td>
+                    <td>{{item.t_EntreArribo}}</td>
+                    <td>{{item.t_servicio}}</td>
+                    <td>{{item.h_arribo}}</td>
+                    <td>{{item.h_servicio}}</td>
+                    <td>{{item.h_f_servicio}}</td>
+                    <td>{{item.t_espera_cola}}</td>
+                    <td>{{item.t_servidor_osicio}}</td>     
+                </tr>
+            </tbody>
           </table>
     </div>
   </div>

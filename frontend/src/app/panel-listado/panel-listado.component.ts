@@ -8,19 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PanelListadoComponent implements OnInit {
 
-  @Input() grafico: SimGraficaComponent;
-
+  @Input() enProceso = [];
   constructor() { }
 
   ngOnInit() {
   }
-
-  addnewClient() {
-    this.grafico.push();
-  }
-
-  removeClient() {
-    this.grafico.pop();
-  }
-
 }
