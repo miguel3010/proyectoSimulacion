@@ -1,13 +1,14 @@
 from model.parametros import Parametros
 from model.Proceso import Proceso
 import datetime
+import numpy as np
 
 
 class Simulador(object):
     params: Parametros
 
     def simular(self, param: Parametros):
-        "Proceso principal de simulación"
+        """Proceso principal de simulación"""
         if param.isValid():
             self.params = param
             res = []
@@ -24,8 +25,8 @@ class Simulador(object):
                 a.t_servidor_osicio = 8
                 res.append(a)
                 i = i + 1
-           # self.generarTiempo_Arribo(res)
-            # self.generarTiempo_Servicio(res)
+            self.generarTiempo_Arribo(res)
+            self.generarTiempo_Servicio(res)
             # self.process(res)
             return res
         return None
@@ -34,18 +35,20 @@ class Simulador(object):
         pass
 
     def distAleatoria_Normal(self, desv_est, promedio, cant):
-        "Generación de numeros aleatorios con distribución Normal"
-        pass
+        """Generación de numeros aleatorios con distribución Normal"""
+        return np.random.normal(promedio, desv_est, cant)
 
     def distAleatoria_Uniforme(self, min, max, cant):
-        "Generación de numeros aleatorios con distribución Uniforme"
-        pass
+        """Generación de numeros aleatorios con distribución Uniforme"""
+        return np.random.uniform(min, max, cant)
 
     def distAleatoria_Poisson(self, promedio, cant):
-        "Generación de numeros aleatorios con distribución Poisson"
-        pass
+        """Generación de numeros aleatorios con distribución Poisson"""
+        return np.random.poisson(promedio, cant)
 
     def generarTiempo_Arribo(self, data):
+        """Proceso de generación de tiempos entre arribo según la distribución
+        especificados en Parametros params"""
         num = []
         dist = self.params.dist_cola
         if dist.dist == 0:
@@ -57,13 +60,15 @@ class Simulador(object):
         elif dist.dist == 2:
             num = self.distAleatoria_Poisson(
                 dist.promedio, self.params.nCliente)
-        if num is not None and num.length > 0:
+        if num is not None and num.size > 0:
             i = 0
             while i < self.params.nCliente:
                 data[i].t_EntreArribo = num[i]
                 i = i + 1
 
     def generarTiempo_Servicio(self, data):
+        """Proceso de generación de tiempos de servicio según la distribución
+         especificados en Parametros params"""
         num = []
         dist = self.params.dist_Server
         if dist.dist == 0:
@@ -75,7 +80,7 @@ class Simulador(object):
         elif dist.dist == 2:
             num = self.distAleatoria_Poisson(
                 dist.promedio, self.params.nCliente)
-        if num is not None and num.length > 0:
+        if num is not None and num.size > 0:
             i = 0
             while i < self.params.nCliente:
                 data[i].t_servicio = num[i]
