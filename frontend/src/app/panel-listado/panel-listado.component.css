@@ -1,0 +1,36 @@
+.header-fixed {
+    width: 100%;
+    text-align:  center;
+    font-size: 12px;   
+}
+
+.header-fixed > thead,
+.header-fixed > tbody,
+.header-fixed > thead > tr,
+.header-fixed > tbody > tr,
+.header-fixed > thead > tr > th,
+.header-fixed > tbody > tr > td {
+    display: block;
+}
+
+.header-fixed > tbody > tr:after,
+.header-fixed > thead > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.header-fixed > tbody {
+    overflow-y: auto; 
+    
+    height: -webkit-calc(100vh - 72px);
+    height: -moz-calc(100vh - 72px);
+    height: calc(100vh - 300px);
+}
+
+.header-fixed > tbody > tr > td,
+.header-fixed > thead > tr > th {
+    width: 20%;
+    float: left;
+}

@@ -5,33 +5,21 @@ height: calc(100vh - 130px); ">
       Clientes en cola  <span style="font-size: 15px;" class="badge badge-default">{{enProceso.length}}</span> 
     </div>
     <div class="card-block">
-        <table class="table" style = "overflow-y:scroll;
-        height:100%;
-        display:block;
-        font-size: 10px;
-        ">
+        <table class="table table-striped header-fixed" style="font-size: 11px;">
             <thead>
               <tr>
-                <th>No. Cliente</th>
-                <th>Tiempo entre arribo</th>
-                <th>Tiempo de Servicio</th> 
+                <th >No. Cliente</th>
                 <th>Hora de arribo</th> 
-                <th>Hora de inicio de Servicio</th> 
                 <th>Hora de fin de servicio</th> 
                 <th>Tiempo de Espera en cola </th> 
-                <th>Servidor Ocioso </th>
               </tr>
             </thead> 
             <tbody>
                 <tr *ngFor="let item of enProceso">
                     <td>{{item.numeroCliente}}</td>
-                    <td>{{item.t_EntreArribo}}</td>
-                    <td>{{item.t_servicio}}</td>
                     <td>{{item.h_arribo}}</td>
-                    <td>{{item.h_servicio}}</td>
                     <td>{{item.h_f_servicio}}</td>
                     <td>{{item.t_espera_cola}}</td>
-                    <td>{{item.t_servidor_osicio}}</td>     
                 </tr>
             </tbody>
           </table>
