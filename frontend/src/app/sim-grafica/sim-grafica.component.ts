@@ -34,9 +34,11 @@ export class SimGraficaComponent implements AfterViewInit {
     this.refpointY = (this.height * 0.10) * 2 - this.circleRadio;
     this.refpointX = this.width / 2;
     this.spacesize = this.circleRadio * 2;
+    this.refpointX = this.refpointX - this.spacesize * 0.5;
+
     this.interlineado = this.circleRadio / 2;
 
-    this.horizontalSpaces = (this.width * 0.90) / (this.spacesize + this.interlineado);
+    this.horizontalSpaces = Math.floor((this.width * 0.90) / (this.spacesize + this.interlineado));
     this.verticalSpaces = (this.height - this.refpointY) / (this.spacesize + this.interlineado);
     this.update();
   }
@@ -54,29 +56,28 @@ export class SimGraficaComponent implements AfterViewInit {
     if (i === 1) {
       p.y = this.refpointY;
       p.x = this.refpointX;
-    } else if (i - 1 <= this.horizontalSpaces / 2) {
-      i--;
+    } else if (i <= this.horizontalSpaces / 2 + 2) {
+      i -= 2;
       p.y = this.refpointY + this.spacesize * 2;
-      p.x = this.refpointX + ((this.spacesize * (i - 1)) + (this.interlineado * (i - 1)));
+      p.x = this.refpointX + ((this.spacesize * (i)) + (this.interlineado * (i)));
     } else {
       i--;
-      let e = i + 1 - this.horizontalSpaces / 2;
+      let e = i - 1 - (this.horizontalSpaces / 2 + 1);
       e = e / this.horizontalSpaces;
-
-      p.y = (this.refpointY + this.spacesize * 2) + (this.spacesize + this.interlineado * 3) * Math.trunc(e + 1);
-
+      p.y = (this.refpointY + this.spacesize * 2) + (this.spacesize + this.interlineado * 4) * Math.trunc(e + 1);
       if (Math.trunc(e % 2) === 0) {
 
-        let ex_izq = Math.floor(this.horizontalSpaces / 2);
-        let pos_max = this.refpointX + ((this.spacesize * (ex_izq - 1)) + (this.interlineado * (ex_izq - 1)));
-        let ii = i - Math.floor(this.horizontalSpaces / 2) - (Math.trunc(e) * this.horizontalSpaces);
+        const ex_izq = this.horizontalSpaces / 2 + 2;
+        const pos_max = this.refpointX + ((this.spacesize * (ex_izq - 1)) + (this.interlineado * (ex_izq - 1)));
+        const ii = i - Math.floor(this.horizontalSpaces / 2) - (Math.floor(e) * this.horizontalSpaces);
         p.x = pos_max - ((this.spacesize * (ii - 1)) + (this.interlineado * (ii - 1)));
 
       } else {
-        let ex_der = Math.floor(this.horizontalSpaces / 2);
-        let pos_max = this.refpointX - ((this.spacesize * (ex_der - 1)) + (this.interlineado * (ex_der - 1)));
-        let ii = i - Math.floor(this.horizontalSpaces / 2) - (Math.trunc(e) * this.horizontalSpaces);
+        const ex_izq = this.horizontalSpaces / 2 + 2;
+        const pos_max = this.refpointX - ((this.spacesize * (ex_izq - 1)) + (this.interlineado * (ex_izq - 1)));
+        const ii = i - Math.floor(this.horizontalSpaces / 2) - (Math.floor(e) * this.horizontalSpaces);
         p.x = pos_max + ((this.spacesize * (ii)) + (this.interlineado * (ii)));
+
       }
     }
     return p;
@@ -84,7 +85,7 @@ export class SimGraficaComponent implements AfterViewInit {
 
   public pop() {
     if (this.cola > 0) {
-      this.cola--; 
+      this.cola--;
       this.update();
     }
   }
@@ -104,7 +105,7 @@ export class SimGraficaComponent implements AfterViewInit {
     this.context.strokeStyle = '#1E88E5';
     this.context.stroke();
 
-    this.drawCircle(this.width / 2, (this.height * 0.10) / 2, this.height * 0.03, this.serverColor);
+    this.drawCircle(this.refpointX, (this.height * 0.10) / 2, this.circleRadio, this.serverColor);
   }
 
   drawCircle(x, y, radio, color) {
