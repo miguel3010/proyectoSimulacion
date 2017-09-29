@@ -8,8 +8,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./simulacion.component.css']
 })
 export class SimulacionComponent implements OnInit {
-  private procesos = [];
-  private enProceso = [];
+  procesos = [];
+  enProceso = [];
   @ViewChild('grafica') grafico: SimGraficaComponent;
   constructor(private api: ApiService) { }
 

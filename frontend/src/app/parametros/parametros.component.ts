@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./parametros.component.css']
 })
 export class ParametrosComponent implements OnInit {
-  private params: Parametros;
+  params: Parametros;
   constructor(private api: ApiService) { }
 
   ngOnInit() {
@@ -21,16 +21,10 @@ export class ParametrosComponent implements OnInit {
       alert('error no params.');
     });
   }
-  saverange(r) {
-    console.log('sef' + this.params.dist_cola.desv_standar);
-  }
-
-  onSelect() {
-    console.log(this.params.um_tiempo);
-  }
 
   actualizarParametros() {
     if (this.params != null) {
+      console.log(this.params);
       this.api.post_Parameters(this.params).subscribe(Response => {
         alert('Parametros actualizado');
       }, error => {

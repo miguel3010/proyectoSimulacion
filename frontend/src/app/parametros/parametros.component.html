@@ -1,30 +1,36 @@
 <div class="row">
   <form class="col col-xs-12">
-    <div class="form-group">
-      <h5>Cola:</h5>
-      <app-distribucion *ngIf="params" [(data)]="this.params.dist_cola"></app-distribucion>
-    </div>
-    <div class="form-group">
-      <h5>Servidor:</h5>
-      <app-distribucion *ngIf="params" [(data)]="params.dist_Server"></app-distribucion>
-    </div>
+
+    <h5>Cola:</h5>
+    <app-distribucion *ngIf="params" [(data)]="this.params.dist_cola"></app-distribucion>
 
 
-    <div class="form-group">
-      <label for="umt">Unidad de Tiempo</label>
-      <select id="umt" *ngIf="params" [(ngModel)]="params.um_tiempo" [ngModelOptions]="{standalone: true}" (change)="onSelect()">       
-            <option value="" disabled selected>Choose your option</option>
-            <option value="0">Horas</option>
-            <option value="1">Minutos</option>
-            <option value="2">Segundos</option>
-      </select>
-    </div>
+    <h5>Servidor:</h5>
+    <app-distribucion *ngIf="params" [(data)]="params.dist_Server"></app-distribucion>
 
-    <div class="form-group">
-      <label for="exampleInputEmail1">Número de clientes</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" type="number" *ngIf="params" [(ngModel)]="params.nCliente" [ngModelOptions]="{standalone: true}" (change)="saverange()">
-    </div>
 
+    <div class="row">
+
+      <div class="col col-md-2">
+        <div class="form-group">
+          <label for="umt">Unidad de Tiempo</label>
+          <select id="umt" class="form-control validate" *ngIf="params" [(ngModel)]="params.um_tiempo" [ngModelOptions]="{standalone: true}">       
+            <option value="" disabled selected>Escoja una opción</option>
+            <option [ngValue]="0">Horas</option>
+            <option [ngValue]="1">Minutos</option>
+            <option [ngValue]="2">Segundos</option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="col col-md-2">
+        <div class="form-group">
+          <label for="nclient">Número de clientes</label>
+          <input class="form-control validate" id="nclient" type="number" *ngIf="params" [(ngModel)]="params.nCliente" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+    </div>
   </form>
 </div>
 
