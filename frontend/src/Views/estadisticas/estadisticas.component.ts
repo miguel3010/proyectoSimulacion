@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-estadisticas',
   templateUrl: './estadisticas.component.html',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EstadisticasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService: Title) { }
+
+
 
   ngOnInit() {
+    this.titleService.setTitle('Estadísticas');
+
   }
 
 }

@@ -12,14 +12,14 @@ import { SimulacionComponent } from '../Views/simulacion/simulacion.component';
 import { EstadisticasComponent } from '../Views/estadisticas/estadisticas.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DistribucionComponent } from './distribucion/distribucion.component';
-import {HttpModule} from '@angular/http';
-import { SimGraficaComponent } from './sim-grafica/sim-grafica.component'; 
+import { HttpModule } from '@angular/http';
+import { SimGraficaComponent } from './sim-grafica/sim-grafica.component';
 import { PanelListadoComponent } from './panel-listado/panel-listado.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeViewComponent },
-  { path: 'simulacion',      component: SimulacionComponent },
-  { path: 'estadisticas',      component: EstadisticasComponent}
+  { path: 'simulacion', component: SimulacionComponent },
+  { path: 'estadisticas', component: EstadisticasComponent }
 ];
 
 @NgModule({
@@ -45,7 +45,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     ApiService
-    ],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

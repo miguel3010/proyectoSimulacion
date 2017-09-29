@@ -1,6 +1,7 @@
 import { SimGraficaComponent } from './../../app/sim-grafica/sim-grafica.component';
 import { ApiService } from './../../app/api.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-simulacion',
@@ -11,9 +12,12 @@ export class SimulacionComponent implements OnInit {
   procesos = [];
   enProceso = [];
   @ViewChild('grafica') grafico: SimGraficaComponent;
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private titleService: Title) { }
+
+
 
   ngOnInit() {
+    this.titleService.setTitle('Simulación');
     this.api.simular().subscribe(response => {
       this.procesos = response.json();
       console.log(this.procesos);
