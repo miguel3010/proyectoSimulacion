@@ -34,6 +34,8 @@ export class SimGraficaComponent implements AfterViewInit {
     this.refpointY = (this.height * 0.10) * 2 - this.circleRadio;
     this.refpointX = this.width / 2;
     this.spacesize = this.circleRadio * 2;
+    this.refpointX = this.refpointX - this.spacesize * 0.5;
+
     this.interlineado = this.circleRadio / 2;
 
     this.horizontalSpaces = Math.floor((this.width * 0.90) / (this.spacesize + this.interlineado));
@@ -74,7 +76,7 @@ export class SimGraficaComponent implements AfterViewInit {
         const ex_izq = this.horizontalSpaces / 2 + 2;
         const pos_max = this.refpointX - ((this.spacesize * (ex_izq - 1)) + (this.interlineado * (ex_izq - 1)));
         const ii = i - Math.floor(this.horizontalSpaces / 2) - (Math.floor(e) * this.horizontalSpaces);
-        p.x = pos_max + ((this.spacesize * (ii )) + (this.interlineado * (ii )));
+        p.x = pos_max + ((this.spacesize * (ii)) + (this.interlineado * (ii)));
 
       }
     }
@@ -103,7 +105,7 @@ export class SimGraficaComponent implements AfterViewInit {
     this.context.strokeStyle = '#1E88E5';
     this.context.stroke();
 
-    this.drawCircle(this.width / 2, (this.height * 0.10) / 2, this.height * 0.03, this.serverColor);
+    this.drawCircle(this.refpointX, (this.height * 0.10) / 2, this.circleRadio, this.serverColor);
   }
 
   drawCircle(x, y, radio, color) {
