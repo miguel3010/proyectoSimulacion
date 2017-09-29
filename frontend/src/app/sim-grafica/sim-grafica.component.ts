@@ -29,7 +29,7 @@ export class SimGraficaComponent implements AfterViewInit {
     this.height = window.screen.height * 0.76;
     this.context.canvas.height = this.height;
 
-    this.cola = 50;
+    this.cola = 0;
     this.circleRadio = this.height * 0.03;
     this.refpointY = (this.height * 0.10) * 2 - this.circleRadio;
     this.refpointX = this.width / 2;

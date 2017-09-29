@@ -28,8 +28,18 @@ class Parametros(object):
     def fromJSON(self, json_content):
         data = json.loads(json_content)
         for key, value in data.items():
-            self.__dict__[key] = value      
+            self.__dict__[key] = value
 
+    def isValid(self):
+        if (self.dist_cola != None 
+            and self.dist_Server != None
+            and self.dist_Server.isValid()
+            and self.dist_cola.isValid() 
+            and self.nCliente > 0 
+            and self.um_tiempo >= 0 
+            and self.um_tiempo <= 2 ):
+            return True     
+        return False
 
 class Distribucion(object):
     dist = 0 # 0 Normal, 1 Uniforme, 2Poisson
@@ -44,3 +54,18 @@ class Distribucion(object):
         self.promedio = 0
         self.min = 0
         self.max = 0
+
+    def isValid(self):
+        if (self.dist == 0):
+            if( self.desv_standar > 0 
+            and self.desv_standar <= 1
+            and self.promedio > 0):
+                return True
+        if(self.dist == 1):
+            if(self.promedio > 0):
+                return True
+
+        if(self.dist == 2):
+            if(self.min > self.max):
+                return True
+        return False

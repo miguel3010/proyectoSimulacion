@@ -2,30 +2,81 @@ from model.parametros import Parametros
 from model.Proceso import Proceso
 import datetime
 
+
 class Simulador(object):
+    params: Parametros
 
     def simular(self, param: Parametros):
-        res = []
-        a = Proceso(1) 
-        a.h_arribo = str(datetime.time(1, 2, 3))
-        a.h_f_servicio = str(datetime.time(1, 2, 3))
-        a.h_servicio = str(datetime.time(1, 2, 3))
-        a.l_cola = 0
-        a.t_EntreArribo = 43
-        a.t_espera_cola = 8
-        a.t_servicio = 3
-        a.t_servidor_osicio = 8
+        "Proceso principal de simulación"
+        if param.isValid():
+            self.params = param
+            res = []
+            i = 1
+            while i <= param.nCliente:
+                a = Proceso(i)
+                a.h_arribo = str(datetime.time(1, 2, 3))
+                a.h_f_servicio = str(datetime.time(1, 2, 3))
+                a.h_servicio = str(datetime.time(1, 2, 3))
+                a.l_cola = 0
+                a.t_EntreArribo = 43
+                a.t_espera_cola = 8
+                a.t_servicio = 3
+                a.t_servidor_osicio = 8
+                res.append(a)
+                i = i + 1
+           # self.generarTiempo_Arribo(res)
+            # self.generarTiempo_Servicio(res)
+            # self.process(res)
+            return res
+        return None
 
-        b = Proceso(2) 
-        b.h_arribo = str(datetime.time(1, 2, 3))
-        b.h_f_servicio = str(datetime.time(1, 2, 3))
-        b.h_servicio = str(datetime.time(1, 2, 3))
-        b.l_cola = 1
-        b.t_EntreArribo = 343
-        b.t_espera_cola = 8
-        b.t_servicio = 32
-        b.t_servidor_osicio = 83
+    def process(self, data):
+        pass
 
-        res.append(a)
-        res.append(b)
-        return res
+    def distAleatoria_Normal(self, desv_est, promedio, cant):
+        "Generación de numeros aleatorios con distribución Normal"
+        pass
+
+    def distAleatoria_Uniforme(self, min, max, cant):
+        "Generación de numeros aleatorios con distribución Uniforme"
+        pass
+
+    def distAleatoria_Poisson(self, promedio, cant):
+        "Generación de numeros aleatorios con distribución Poisson"
+        pass
+
+    def generarTiempo_Arribo(self, data):
+        num = []
+        dist = self.params.dist_cola
+        if dist.dist == 0:
+            num = self.distAleatoria_Normal(
+                dist.desv_standar, dist.promedio, self.params.nCliente)
+        elif dist.dist == 1:
+            num = self.distAleatoria_Uniforme(
+                dist.min, dist.max, self.params.nCliente)
+        elif dist.dist == 2:
+            num = self.distAleatoria_Poisson(
+                dist.promedio, self.params.nCliente)
+        if num is not None and num.length > 0:
+            i = 0
+            while i < self.params.nCliente:
+                data[i].t_EntreArribo = num[i]
+                i = i + 1
+
+    def generarTiempo_Servicio(self, data):
+        num = []
+        dist = self.params.dist_Server
+        if dist.dist == 0:
+            num = self.distAleatoria_Normal(
+                dist.desv_standar, dist.promedio, self.params.nCliente)
+        elif dist.dist == 1:
+            num = self.distAleatoria_Uniforme(
+                dist.min, dist.max, self.params.nCliente)
+        elif dist.dist == 2:
+            num = self.distAleatoria_Poisson(
+                dist.promedio, self.params.nCliente)
+        if num is not None and num.length > 0:
+            i = 0
+            while i < self.params.nCliente:
+                data[i].t_servicio = num[i]
+                i = i + 1
