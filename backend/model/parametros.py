@@ -10,11 +10,11 @@ class Parametros(object):
 
     def __init__(self):
         self.dist_cola = Distribucion()
-        self.dist_cola.dist = 0
+        self.dist_cola.dist = 1
         self.dist_cola.min = 0
         self.dist_cola.max = 5
         self.dist_Server = Distribucion()
-        self.dist_Server.dist = 0
+        self.dist_Server.dist = 1
         self.dist_Server.min = 2
         self.dist_Server.max = 10
 
@@ -60,12 +60,13 @@ class Distribucion(object):
             if( self.desv_standar > 0 
             and self.desv_standar <= 1
             and self.promedio > 0):
-                return True
+                return True    
+
         if(self.dist == 1):
-            if(self.promedio > 0):
+            if(self.min < self.max):
                 return True
 
         if(self.dist == 2):
-            if(self.min > self.max):
+            if(self.promedio > 0):
                 return True
         return False
