@@ -16,9 +16,9 @@ height: calc(100vh - 130px); ">
             </thead> 
             <tbody>
                 <tr *ngFor="let item of enProceso">
-                    <td>{{item.numeroCliente}}</td>
-                    <td>{{item.h_arribo}}</td>
-                    <td>{{item.h_f_servicio}}</td>
+                    <td>{{item.numeroCliente }}</td>
+                    <td>{{item.h_arribo | date:'HH:mm:ss'}}</td>
+                    <td>{{item.h_f_servicio | date:'HH:mm:ss'}}</td>
                     <td>{{item.t_espera_cola}}</td>
                 </tr>
             </tbody>

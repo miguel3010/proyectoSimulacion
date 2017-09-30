@@ -11,11 +11,10 @@ import { Title } from '@angular/platform-browser';
 export class SimulacionComponent implements OnInit {
   procesos = [];
   enProceso = [];
+
   @ViewChild('grafica') grafico: SimGraficaComponent;
   constructor(private api: ApiService, private titleService: Title) { }
-
-
-
+  
   ngOnInit() {
     this.titleService.setTitle('Simulación');
     this.api.simular().subscribe(response => {

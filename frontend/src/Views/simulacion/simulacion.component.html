@@ -65,9 +65,9 @@
                         <td>{{item.numeroCliente}}</td>
                         <td>{{item.t_EntreArribo}}</td>
                         <td>{{item.t_servicio}}</td>
-                        <td>{{item.h_arribo}}</td>
-                        <td>{{item.h_servicio}}</td>
-                        <td>{{item.h_f_servicio}}</td>
+                        <td>{{item.h_arribo | date:'HH:mm:ss'}}</td>
+                        <td>{{item.h_servicio | date:'HH:mm:ss'}}</td>
+                        <td>{{item.h_f_servicio | date:'HH:mm:ss'}}</td>
                         <td>{{item.t_espera_cola}}</td>
                         <td>{{item.t_servidor_osicio}}</td>                        
                         <td>{{item.l_cola}}</td>

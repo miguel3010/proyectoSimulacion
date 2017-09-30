@@ -25,10 +25,13 @@ export class SimGraficaComponent implements AfterViewInit {
   ngAfterViewInit() { // wait for the view to init before using the element
 
     this.context = this.chessCanvas.nativeElement.getContext('2d');
+    this.context.translate(0.5, 0.5);
+
     this.width = this.context.canvas.width;
     this.height = window.screen.height * 0.76;
     this.context.canvas.height = this.height;
 
+    this.context.scale(1, 1);
     this.cola = 0;
     this.circleRadio = this.height * 0.03;
     this.refpointY = (this.height * 0.10) * 2 - this.circleRadio;
