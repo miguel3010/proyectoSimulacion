@@ -16,6 +16,7 @@ import { DistribucionComponent } from './distribucion/distribucion.component';
 import { HttpModule } from '@angular/http';
 import { SimGraficaComponent } from './sim-grafica/sim-grafica.component';
 import { PanelListadoComponent } from './panel-listado/panel-listado.component';
+import { ChartsModule } from 'ng2-charts';
 
 const appRoutes: Routes = [
   { path: '', component: HomeViewComponent },
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
     PanelListadoComponent
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     HttpModule,
     FormsModule,
