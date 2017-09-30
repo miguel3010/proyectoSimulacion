@@ -3,7 +3,8 @@ from flask import Flask,json, request
 from person import person
 from model.parametros import Parametros
 from model.Estadisticas import Estadisticas
-from simulador import Simulador 
+from simulador import Simulador
+from Analisis import Analisis
 
 from flask_cors import CORS  # This is the magic
 app = Flask(__name__)
@@ -39,6 +40,24 @@ def simular():
     if(resultados != None):
         response = app.response_class(
             response = parseListToJSON(resultados), 
+            status = 200, 
+            mimetype = 'application/json'
+        )
+        return response
+    response = app.response_class(
+            response = "", 
+            status = 406, 
+            mimetype = 'application/json'
+        )
+    return response
+
+@app.route('/api/estadisticas', methods=['GET', 'POST']) 
+def estadisticas():
+    global resultados
+    res = Analisis().analizar(resultados)
+    if(resultados != None):
+        response = app.response_class(
+            response = res.toJSON(), 
             status = 200, 
             mimetype = 'application/json'
         )
