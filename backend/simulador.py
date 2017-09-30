@@ -177,4 +177,4 @@ class Simulador(object):
             while(data[self.index].h_f_servicio <= current.h_arribo):
                 self.index = self.index + 1
                 acumulador = acumulador + 1
-            current.l_cola = data[position].l_cola - acumulador
+            current.l_cola = data[position].l_cola + 1 - acumulador

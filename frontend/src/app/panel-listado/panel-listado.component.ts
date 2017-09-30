@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PanelListadoComponent implements OnInit {
 
-  @Input() enProceso = [];
+  @Input() enProceso = []; 
   constructor() { }
 
   ngOnInit() {
