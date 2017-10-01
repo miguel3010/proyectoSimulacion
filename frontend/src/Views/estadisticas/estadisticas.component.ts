@@ -1,4 +1,4 @@
-import { Estadisticas, DatoHistograma } from './../../app/Model/Estadisticas';
+import { Estadisticas, DatoHistograma, EstadisticasDescriptivas } from './../../app/Model/Estadisticas';
 import { ApiService } from './../../app/api.service';
 import { Component, OnInit } from '@angular/core';
 import { ChartsModule } from 'ng2-charts';
@@ -14,34 +14,49 @@ export class EstadisticasComponent implements OnInit {
   private estadisticas: Estadisticas;
   ready = false;
 
+  public descriptivaChart_arribo: Array<any>;
+  public descriptivaChart_servicio: Array<any>;
+  public descriptivaChart_label: Array<any> = ['Desviación Estándar','Media','Mediana','Moda','Varianza'];
+
+  //gráfica 1
   public lineChartLegend = true;
   public lineChartType = 'bar';
 
-  public lineChartData: Array<any> = [
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Serie de Cola' }
-  ];
-  public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartData: Array<any>;
+  public lineChartLabels: Array<any>;
   public lineChartOptions: any = {
     responsive: true
   };
   public lineChartColors: Array<any> = [
-    { // grey
+    { // blue
       backgroundColor: 'rgba(24,127,230,0.2)',
       borderColor: 'rgba(148,159,177,1)',
       pointBackgroundColor: 'rgba(148,159,177,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(230,24,24,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
+    }
   ];
+
+    //gráfica 2
+    public barChartLegend = true;
+    public barChartType = 'bar';
+  
+    public barChartData: Array<any>;
+    public barChartLabels: Array<any>;
+    public barChartOptions: any = {
+      responsive: true
+    };
+    public barChartColors: Array<any> = [
+      { // red
+        backgroundColor: 'rgba(255,127,230,0.2)',
+        borderColor: 'rgba(148,159,177,1)',
+        pointBackgroundColor: 'rgba(148,159,177,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+      }
+    ];
 
   constructor(private titleService: Title, private api: ApiService) { }
 
@@ -60,17 +75,37 @@ export class EstadisticasComponent implements OnInit {
   showData() {
     this.ready = true;
     // grafica 1
-    this.lineChartData = this.getFrecuencyArray(this.estadisticas.histograma_t_arribo);
+    this.lineChartData = [
+      { data: this.getFrecuencyArray(this.estadisticas.histograma_t_arribo), label: 'Frecuencias de Tiempo de Arribo'}
+    ];
     this.lineChartLabels = this.getLabelArray(this.estadisticas.histograma_t_arribo);
 
     // grafica 2
-    this.lineChartData = [
-      { data: this.getFrecuencyArray(this.estadisticas.histograma_t_servicio) , label: 'frecuencias' }
+    this.barChartData = [
+      { data: this.getFrecuencyArray(this.estadisticas.histograma_t_servicio) , label: 'Frecuencias de Servicio' }
     ];
-    this.lineChartLabels = this.getLabelArray(this.estadisticas.histograma_t_servicio);
+    this.barChartLabels = this.getLabelArray(this.estadisticas.histograma_t_servicio);
 
+    // estadistica descriptiva 
+    this.descriptivaChart_arribo = [
+      { data : this.getEstadisticaDescriptiva(this.estadisticas.estadisticas_t_arribo)}
+    ];
+    this.descriptivaChart_servicio = [
+      { data : this.getEstadisticaDescriptiva(this.estadisticas.estadisticas_t_servicio)}
+    ];
 
     console.log(this.estadisticas);
+  }
+
+  getEstadisticaDescriptiva(arregloDescripcion: EstadisticasDescriptivas){
+    let res = [];
+      res[0] = arregloDescripcion.desv_estandar;
+      res[1] = arregloDescripcion.media;
+      res[2] = arregloDescripcion.mediana;
+      res[3] = arregloDescripcion.moda;
+      res[4] = arregloDescripcion.varianza;
+      console.log(res);
+      return res;
   }
 
   getFrecuencyArray(arregloFrecuencia: DatoHistograma[]) {
