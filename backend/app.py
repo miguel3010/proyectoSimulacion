@@ -35,6 +35,7 @@ def post_Parameters():
 def simular():
     global _parameters
     global resultados
+    
     sim = Simulador
     resultados = sim().simular(_parameters)
     if(resultados != None):
@@ -54,14 +55,15 @@ def simular():
 @app.route('/api/estadisticas', methods=['GET', 'POST']) 
 def estadisticas():
     global resultados
-    res = Analisis().analizar(resultados)
-    if(resultados != None):
-        response = app.response_class(
-            response = res.toJSON(), 
-            status = 200, 
-            mimetype = 'application/json'
-        )
-        return response
+    if(resultados is not None):
+        res = Analisis().analizar(resultados)
+        if(res != None):
+            response = app.response_class(
+                response = res.toJSON(), 
+                status = 200, 
+                mimetype = 'application/json'
+            )
+            return response
     response = app.response_class(
             response = "", 
             status = 406, 
