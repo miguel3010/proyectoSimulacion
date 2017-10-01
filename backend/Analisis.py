@@ -18,7 +18,7 @@ class Analisis(object):
         datos.estadisticas_t_arribo.varianza = self.calc_varianza(
             datos_t_arribo)
 
-        # Analisis de tiempo de Arribo
+        # Analisis de tiempo de Servicio
         datos.estadisticas_t_servicio.moda = self.calc_moda(datos_t_servicio)
         datos.estadisticas_t_servicio.desv_estandar = self.calc_dev_estandar(
             datos_t_servicio)

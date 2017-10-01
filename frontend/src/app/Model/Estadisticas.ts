@@ -8,7 +8,7 @@ export class Estadisticas {
 export class DatoHistograma {
     dato: number;
     index: number;
-    rango: string;
+    rango: string;  
 }
 
 export class EstadisticasDescriptivas {

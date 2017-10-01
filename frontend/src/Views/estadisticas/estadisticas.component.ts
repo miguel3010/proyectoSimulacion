@@ -18,8 +18,7 @@ export class EstadisticasComponent implements OnInit {
   public lineChartType = 'line';
 
   public lineChartData: Array<any> = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Serie de Servidor' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Serie de Cola' },
+    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Serie de Cola' }
   ];
   public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartOptions: any = {
@@ -61,15 +60,38 @@ export class EstadisticasComponent implements OnInit {
   showData() {
     this.ready = true;
     // grafica 1
-    //this.lineChartData = this.getarray(this.estadisticas.histograma_t_arribo); //number[]
-    //this.lineChartLabels = this.getarrhffk(this.estadisticas.histograma_t_arribo); //string[]
+    this.lineChartData = this.getFrecuencyArray(this.estadisticas.histograma_t_arribo); //number[]
+    this.lineChartLabels = this.getLabelArray(this.estadisticas.histograma_t_arribo); //string[]
 
-     // grafica 2
-//     this.lineChartData = this.getarray(this.estadisticas.histograma_t_arribo); //number[]
-  //   this.lineChartLabels = this.getarrhffk(this.estadisticas.histograma_t_arribo); //string[]
+    // grafica 2
+    this.lineChartData = this.getFrecuencyArray(this.estadisticas.histograma_t_servicio); //number[]
+    this.lineChartLabels = this.getLabelArray(this.estadisticas.histograma_t_servicio); //string[]
+
 
     console.log(this.estadisticas);
-  } 
+  }
+  
+  getFrecuencyArray(arregloFrecuencia){
+    let i = 0
+    let frecuencia:Array<any> = new Array(this.lineChartData.length);
+    while (i < arregloFrecuencia.length){
+    frecuencia[i] = {data: (this.estadisticas.histograma_t_arribo[i].dato), label: this.lineChartData[i].label};
+      i++
+    }
+      console.log(frecuencia)
+    return frecuencia
+  }
+
+  getLabelArray(arregloLabel){
+    let i = 0
+    let label:Array<string> = new Array(this.lineChartLabels.length)
+    while (i < arregloLabel.length){
+    label[i] = (this.estadisticas.histograma_t_arribo[i].rango);
+      i++
+    }
+      console.log(label)
+    return label
+  }
   
   // events
   public chartClicked(e: any): void {
