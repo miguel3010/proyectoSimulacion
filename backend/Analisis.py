@@ -35,13 +35,14 @@ class Analisis(object):
 
     def calc_histograma(self, datos):
         res = []
-        data, clases = np.histogram(datos, bins='sturges')
+        data, clases = np.histogram(datos, bins=10)
         i = 0
-         
+
         while i < len(clases) - 1:
             h = Data_Histograma()
             h.index = i
-            h.rango = "[" + str(clases[i]) + ', ' + str(clases[i + 1]) + ']'
+            h.rango = "[" + format(clases[i], '.2f') + \
+                ", " + format(clases[i + 1], '.2f') + "]"
             h.dato = int(data[i])
             res.append(h)
             i = i + 1

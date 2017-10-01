@@ -1,47 +1,55 @@
 <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary bg-faded">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="/estadisticas">Estadísticas</a>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link ">asignación 3</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  
-<div  *ngIf="ready" class="container"> 
+  <a class="navbar-brand" href="/estadisticas">Estadísticas</a>
 
-  <h1><span class="badge badge-info ">Gráfica de Cola y Servidor</span></h1>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link ">asignación 3</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div *ngIf="ready" class="container">
+
+  <h1><span class="badge badge-info ">Histograma de tiempo entre Arribo</span></h1>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div style="display: block;">
-      <canvas baseChart width="400" height="400"
-                  [datasets]="lineChartData"  
-                  [labels]="lineChartLabels"
-                  [options]="lineChartOptions"
-                  [colors]="lineChartColors"
-                  [legend]="lineChartLegend"
-                  [chartType]="lineChartType"
-                  (chartHover)="chartHovered($event)"
-                  (chartClick)="chartClicked($event)"></canvas>
+        <canvas baseChart 
+        [datasets]="lineChartData" 
+        [labels]="lineChartLabels"
+        [options]="lineChartOptions"
+        [colors]="lineChartColors" 
+        [legend]="lineChartLegend" 
+        [chartType]="lineChartType" 
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
       </div>
     </div>
-    <div class="col-md-6" style="margin-bottom: 10px">
-      <table class="table table-responsive table-condensed">
-        <tr>
-          <th *ngFor="let label of lineChartLabels">{{label}}</th>
-        </tr>
-        <tr *ngFor="let d of lineChartData">
-          <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
-        </tr>
-      </table>
-      
+
+  </div>
+
+  <h1><span class="badge badge-info ">Histograma de tiempo entre Arribo</span></h1>
+  <div class="row">
+    <div class="col-md-12">
+      <div style="display: block;">
+        <canvas baseChart 
+        [datasets]="lineChartData" 
+        [labels]="lineChartLabels"
+        [options]="lineChartOptions"
+        [colors]="lineChartColors" 
+        [legend]="lineChartLegend" 
+        [chartType]="lineChartType" 
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+      </div>
     </div>
+
   </div>
 
 </div>

@@ -1,4 +1,4 @@
-import { Estadisticas } from './../../app/Model/Estadisticas';
+import { Estadisticas, DatoHistograma } from './../../app/Model/Estadisticas';
 import { ApiService } from './../../app/api.service';
 import { Component, OnInit } from '@angular/core';
 import { ChartsModule } from 'ng2-charts';
@@ -15,7 +15,7 @@ export class EstadisticasComponent implements OnInit {
   ready = false;
 
   public lineChartLegend = true;
-  public lineChartType = 'line';
+  public lineChartType = 'bar';
 
   public lineChartData: Array<any> = [
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Serie de Cola' }
@@ -60,39 +60,41 @@ export class EstadisticasComponent implements OnInit {
   showData() {
     this.ready = true;
     // grafica 1
-    this.lineChartData = this.getFrecuencyArray(this.estadisticas.histograma_t_arribo); //number[]
-    this.lineChartLabels = this.getLabelArray(this.estadisticas.histograma_t_arribo); //string[]
+    this.lineChartData = this.getFrecuencyArray(this.estadisticas.histograma_t_arribo);
+    this.lineChartLabels = this.getLabelArray(this.estadisticas.histograma_t_arribo);
 
     // grafica 2
-    this.lineChartData = this.getFrecuencyArray(this.estadisticas.histograma_t_servicio); //number[]
-    this.lineChartLabels = this.getLabelArray(this.estadisticas.histograma_t_servicio); //string[]
+    this.lineChartData = [
+      { data: this.getFrecuencyArray(this.estadisticas.histograma_t_servicio) , label: 'frecuencias' }
+    ];
+    this.lineChartLabels = this.getLabelArray(this.estadisticas.histograma_t_servicio);
 
 
     console.log(this.estadisticas);
   }
-  
-  getFrecuencyArray(arregloFrecuencia){
-    let i = 0
-    let frecuencia:Array<any> = new Array(this.lineChartData.length);
-    while (i < arregloFrecuencia.length){
-    frecuencia[i] = {data: (this.estadisticas.histograma_t_arribo[i].dato), label: this.lineChartData[i].label};
-      i++
+
+  getFrecuencyArray(arregloFrecuencia: DatoHistograma[]) {
+    let i = 0;
+    let frec = [];
+    while (i < arregloFrecuencia.length) {
+      frec.push(arregloFrecuencia[i].dato);
+      i++;
     }
-      console.log(frecuencia)
-    return frecuencia
+    console.log(frec);
+    return frec;
   }
 
-  getLabelArray(arregloLabel){
-    let i = 0
-    let label:Array<string> = new Array(this.lineChartLabels.length)
-    while (i < arregloLabel.length){
-    label[i] = (this.estadisticas.histograma_t_arribo[i].rango);
-      i++
+  getLabelArray(arregloLabel: DatoHistograma[]) {
+    let i = 0;
+    let frec = [];
+    while (i < arregloLabel.length) {
+      frec.push(arregloLabel[i].rango);
+      i++;
     }
-      console.log(label)
-    return label
+    console.log(frec);
+    return frec;
   }
-  
+
   // events
   public chartClicked(e: any): void {
     console.log(e);
