@@ -14,7 +14,7 @@ _parameters = Parametros()
 resultados = []
 estadisticas = Estadisticas()
 
-@app.route('/parametros', methods=['GET'])
+@app.route('/api/parametros', methods=['GET'])
 def get_Parameters():
     response = app.response_class(
         response = _parameters.toJSON(), 
@@ -23,7 +23,7 @@ def get_Parameters():
     )
     return response
 
-@app.route('/parametros', methods=['POST']) 
+@app.route('/api/parametros', methods=['POST']) 
 def post_Parameters(): 
     p = Parametros()
     p.fromJSON(request.data)    
@@ -31,7 +31,7 @@ def post_Parameters():
     _parameters = p 
     return "" 
 
-@app.route('/simular', methods=['GET', 'POST']) 
+@app.route('/api/simular', methods=['GET', 'POST']) 
 def simular():
     global _parameters
     global resultados

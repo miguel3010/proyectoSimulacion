@@ -9,17 +9,17 @@ export class ApiService {
   constructor(private http: Http) { }
 
   get_Parameters() {
-    return this.http.get(this.baseURL + '/parametros');
+    return this.http.get(this.baseURL + '/api/parametros');
   }
   post_Parameters(data: Parametros) {
-    return this.http.post(this.baseURL + '/parametros', JSON.stringify(data));
+    return this.http.post(this.baseURL + '/api/parametros', JSON.stringify(data));
   }
 
   simular() {
-    return this.http.get(this.baseURL + '/simular');
+    return this.http.get(this.baseURL + '/api/simular');
   }
 
-
-
-
+  getEstadisticas() {
+    return this.http.get(this.baseURL + '/api/estadisticas');
+  }
 }
