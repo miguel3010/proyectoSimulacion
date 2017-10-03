@@ -59,7 +59,7 @@
         <th *ngFor="let label of descriptivaChart_label">{{label}}</th>
       </tr>
       <tr *ngFor="let d of descriptivaChart_arribo">
-        <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+        <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j] | number : '1.2-2'}}</td>
       </tr>
     </table>
   </div>
@@ -73,7 +73,7 @@
             <th *ngFor="let label of descriptivaChart_label">{{label}}</th>
           </tr>
           <tr *ngFor="let d of descriptivaChart_servicio">
-            <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+            <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j] | number : '1.2-2'}}</td>
           </tr>
         </table>
       </div>
