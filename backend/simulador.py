@@ -37,12 +37,15 @@ class Simulador(object):
         self.calc_tiempo_servidor_osioso(None, data[i])
         i = i + 1
         while i < self.params.nCliente:
-            self.calc_hora_arribo(data[i - 1], data[i])
-            self.calc_hora_inicio_servicio(data[i - 1], data[i])
-            self.calc_hora_fin_Servicio(data[i])
-            self.calc_tiempo_cola(data[i])
-            self.calc_tiempo_servidor_osioso(data[i - 1], data[i])
-            self.calc_longitud_cola(data[i], data, i - 1)
+            a = data[i]
+            b = data[i - 1]
+
+            self.calc_hora_arribo(b,a)
+            self.calc_hora_inicio_servicio(b,a)
+            self.calc_hora_fin_Servicio(a)
+            self.calc_tiempo_cola(a)
+            self.calc_tiempo_servidor_osioso(b,a)
+            self.calc_longitud_cola(a, data, i - 1)
             i = i + 1
 
     def calc_tiempo_servidor_osioso(self, data_1: Proceso, data: Proceso):
@@ -55,14 +58,14 @@ class Simulador(object):
                 data.t_servidor_osicio = data.h_servicio.second
         else:
             if (self.params.um_tiempo == 0):
-                data.t_servidor_osicio = (
-                    data_1.h_f_servicio - data.h_servicio).days * 24
+                diff = data.h_servicio - data_1.h_f_servicio
+                data.t_servidor_osicio = diff.seconds / 3600
             elif (self.params.um_tiempo == 1):
-                data.t_servidor_osicio = (
-                    data_1.h_f_servicio - data.h_servicio).days * 24 * 60
+                diff = data.h_servicio - data_1.h_f_servicio
+                data.t_servidor_osicio = diff.seconds / 60
             elif (self.params.um_tiempo == 2):
-                data.t_servidor_osicio = (
-                    data_1.h_f_servicio - data.h_servicio).days * 24 * 3600
+                diff = data.h_servicio - data_1.h_f_servicio
+                data.t_servidor_osicio = diff.seconds
 
     def calc_tiempo_cola(self, data):
         if (self.params.um_tiempo == 0):
@@ -139,7 +142,7 @@ class Simulador(object):
                 dist.desv_standar, dist.promedio, self.params.nCliente)
         elif dist.dist == 1:
             num = self.distAleatoria_Uniforme(
-                dist.min, dist.max, self.params.nCliente)
+                dist.min, dist.max + 1, self.params.nCliente)
         elif dist.dist == 2:
             num = self.distAleatoria_Poisson(
                 dist.promedio, self.params.nCliente)
@@ -159,7 +162,7 @@ class Simulador(object):
                 dist.desv_standar, dist.promedio, self.params.nCliente)
         elif dist.dist == 1:
             num = self.distAleatoria_Uniforme(
-                dist.min, dist.max, self.params.nCliente)
+                dist.min, dist.max + 1, self.params.nCliente)
         elif dist.dist == 2:
             num = self.distAleatoria_Poisson(
                 dist.promedio, self.params.nCliente)
