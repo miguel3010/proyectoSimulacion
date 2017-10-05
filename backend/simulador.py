@@ -39,17 +39,17 @@ class Simulador(object):
         while i < self.params.nCliente:
             a = data[i]
             b = data[i - 1]
-
-            self.calc_hora_arribo(b,a)
-            self.calc_hora_inicio_servicio(b,a)
+            self.calc_hora_arribo(b, a)
+            self.calc_hora_inicio_servicio(b, a)
             self.calc_hora_fin_Servicio(a)
             self.calc_tiempo_cola(a)
-            self.calc_tiempo_servidor_osioso(b,a) 
+            self.calc_tiempo_servidor_osioso(b, a)
             i = i + 1
-        i=0
+        i = 0
         while i < self.params.nCliente:
+            a = data[i]
             self.calc_longitud_cola(a, data, i - 1)
-            i = i + 1 
+            i = i + 1
 
     def calc_tiempo_servidor_osioso(self, data_1: Proceso, data: Proceso):
         if(data_1 == None):
