@@ -52,8 +52,12 @@ class Analisis(object):
         return np.var(resultados, dtype=np.float64)
 
     def calc_moda(self, resultados):
-        return mode(resultados)
-
+        try:
+            return mode(resultados)
+        except Exception:
+            print("Error calculo de moda")
+            return 0
+        
     def calc_mediana(self, resultados):
         return np.median(resultados)
 
