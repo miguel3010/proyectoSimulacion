@@ -1,11 +1,11 @@
 <div class="row">
   <form class="col col-xs-12">
 
-    <h5>Cola:</h5>
+    <h5>Tiempos entre Arribos (Cola):</h5>
     <app-distribucion *ngIf="params" [(data)]="this.params.dist_cola"></app-distribucion>
 
 
-    <h5>Servidor:</h5>
+    <h5>Tiempos de Servicio (Servidor):</h5>
     <app-distribucion *ngIf="params" [(data)]="params.dist_Server"></app-distribucion>
 
 

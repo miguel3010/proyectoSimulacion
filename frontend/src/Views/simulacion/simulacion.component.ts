@@ -18,7 +18,7 @@ export class SimulacionComponent implements OnInit {
   private subscription: Subscription;
   currentTime: Date;
   public timeStep_miliseconds = 10;
-  timer = '00:00:00';
+  timer = 'Cargando Datos...';
 
   @ViewChild('grafica') grafico: SimGraficaComponent;
   constructor(private api: ApiService, private titleService: Title, public datepipe: DatePipe) { }
@@ -37,7 +37,9 @@ export class SimulacionComponent implements OnInit {
 
   }
   startAnimation() {
-    this.currentTime.setTime(new Date(this.procesos[0].h_arribo).getTime());
+    const timerInitialTime = new Date(this.procesos[0].h_arribo);
+    timerInitialTime.setHours(0); timerInitialTime.setMinutes(0); timerInitialTime.setSeconds(0); timerInitialTime.setMilliseconds(0);
+    this.currentTime.setTime(new Date(timerInitialTime).getTime());
     const timer = TimerObservable.create(this.procesos.length - this.enProceso.length - this.finalizados.length, this.timeStep_miliseconds);
     this.subscription = timer.subscribe(t => {
       this.process();

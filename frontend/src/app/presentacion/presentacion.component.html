@@ -1,62 +1,71 @@
- 
 <div class="container" style="margin-top: 20px;">
-   <div id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="card">
-    <div class="card-header" role="tab" id="headingOne">
-      <h5 class="mb-0">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+  <div id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="card">
+      <div class="card-header" role="tab" id="headingOne">
+        <h5 class="mb-0">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           Presentación
         </a>
-      </h5>
-    </div>
+        </h5>
+      </div>
 
-    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-      <div class="card-block">
-        <h5>Universidad Tecnológica de Panamá</h5>
-        <p>Curso: Modelado y Simulación de Sistemas</p>
-        <p><b>Objetivo General:</b></p>
-        <p> 
-            Desarrollar un programa con animación, en un lenguaje de programación, que simule la llegada de clientes a un mecanismo de servicio de 1 cola – 1 servidor.
-        </p>
+      <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+        <div class="card-block">
+          <div class="row">
+            <div class="col col-md-11">
+              <h5>Universidad Tecnológica de Panamá</h5>
+              <p>Curso: Modelado y Simulación de Sistemas</p>
+              <p><b>Objetivo General:</b></p>
+              <p>
+                Desarrollar un programa con animación, en un lenguaje de programación, que simule la llegada de clientes a un mecanismo de
+                servicio de 1 cola – 1 servidor.
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab" id="headingTwo">
-      <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+    <div class="card">
+      <div class="card-header" role="tab" id="headingTwo">
+        <h5 class="mb-0">
+          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           Indicaciones
         </a>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-      <div class="card-block">
-        <ul><h5>Instrucciones para uso de esta herramienta: </h5>
-          <p>
-            Bienvenidos a la herramienta para la simulación de la teoría de cola de 1 servidor - 1 cliente, en la opción de "Parámetros" seleccione el comportamiento de la distribución aleatoria de la Cola y el Servidor e introduzca los valores pertinentes, luego elija la unidad de tiempo y un límite de clientes para la simulación. Una vez rellenado todos los campos, presione el botón de "Actualizar Parámetros", y finalmente presione el botón de "Iniciar Simulación". 
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="card-block">
+          <ul>
+            <h5>Instrucciones para uso de esta herramienta: </h5>
+            <p>
+              Bienvenidos a la herramienta para la simulación de la teoría de cola de 1 servidor - 1 cliente, en la opción de "Parámetros"
+              seleccione el comportamiento de la distribución aleatoria de la Cola y el Servidor e introduzca los valores
+              pertinentes, luego elija la unidad de tiempo y un límite de clientes para la simulación. Una vez rellenado
+              todos los campos, presione el botón de "Actualizar Parámetros", y finalmente presione el botón de "Iniciar
+              Simulación".
             </p>
-          <p>Esto lo llevará a la sección de simulación animada, en el lado derecho podrá ver los datos en vivo de la simulación y al final podrá mostrar en pantalla todos los datos de la simulación dentrod de una tabla. 
+            <p>Esto lo llevará a la sección de simulación animada, en el lado derecho podrá ver los datos en vivo de la simulación
+              y al final podrá mostrar en pantalla todos los datos de la simulación dentrod de una tabla.
             </p>
-          <p>Luego de finalizar la simulación puede proceder a revisar las estadísticas del caso de estudio.
-             </p>
-        </ul>     </div>
+            <p>Luego de finalizar la simulación puede proceder a revisar las estadísticas del caso de estudio.
+            </p>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab" id="headingThree">
-      <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+    <div class="card">
+      <div class="card-header" role="tab" id="headingThree">
+        <h5 class="mb-0">
+          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
           Parámetros
         </a>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="card-block">
-        <app-parametros></app-parametros>
-          </div>
+        </h5>
+      </div>
+      <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+        <div class="card-block">
+          <app-parametros></app-parametros>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-</div>
- 
- 

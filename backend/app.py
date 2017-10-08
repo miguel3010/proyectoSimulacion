@@ -1,6 +1,5 @@
 import webbrowser
-from flask import Flask,json, request
-from person import person
+from flask import Flask,json, request 
 from model.parametros import Parametros
 from model.Estadisticas import Estadisticas
 from simulador import Simulador
@@ -28,7 +27,8 @@ def post_Parameters():
     p = Parametros()
     p.fromJSON(request.data)    
     global _parameters
-    _parameters = p 
+    _parameters = p
+    print("Parametros update") 
     return "" 
 
 @app.route('/api/simular', methods=['GET', 'POST']) 
@@ -82,4 +82,5 @@ def parseListToJSON(_list):
 
 if __name__ == '__main__':
     #webbrowser.open('http://127.0.0.1:5000/')
+    app.debug = True
     app.run()
