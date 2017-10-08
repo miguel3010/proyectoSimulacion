@@ -36,8 +36,8 @@ def simular():
     global _parameters
     global resultados
     
-    sim = Simulador
-    resultados = sim().simular(_parameters)
+    sim = Simulador()
+    resultados = sim.simular(_parameters)
     if(resultados != None):
         response = app.response_class(
             response = parseListToJSON(resultados), 

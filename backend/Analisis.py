@@ -55,8 +55,7 @@ class Analisis(object):
         try:
             return mode(resultados)
         except Exception:
-            print("Error calculo de moda")
-            return 0
+            return max(list(map( resultados.count, resultados)))
         
     def calc_mediana(self, resultados):
         return np.median(resultados)

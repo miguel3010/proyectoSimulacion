@@ -17,7 +17,6 @@ class Distribucion(object):
     def isValid(self):
         if (self.dist == 0):
             if(self.desv_standar > 0
-                    and self.desv_standar <= 1
                     and self.promedio > 0):
                 return True
 
