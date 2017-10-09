@@ -35,7 +35,8 @@ export class SimulacionComponent implements OnInit {
       alert('Falló conexion con el servidor');
     });
     this.api.get_Parameters().subscribe(response => {
-      this.grafico.setDistText(this.getDist(response.json().dist_Server.dist), this.getDist(response.json().dist_cola.dist));
+      this.grafico.setDistText(this.getDist(response.json().dist_Server.dist),
+        this.getDist(response.json().dist_cola.dist), 'Clientes a simular: ' + response.json().nCliente);
     }, error => {
       alert('Falló conexion con el servidor');
     });

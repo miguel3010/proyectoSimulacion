@@ -5,9 +5,8 @@ from model.Estadisticas import Estadisticas
 from simulador import Simulador
 from Analisis import Analisis
 app = Flask(__name__)
-#only for Debug mode
-#from flask_cors import CORS  # This is the magic
-#cors = CORS(app, resources={r"/*": {"origins": "*"}})
+from flask_cors import CORS  # This is the magic
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 _parameters = Parametros() 
 resultados = []

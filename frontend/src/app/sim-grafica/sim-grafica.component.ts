@@ -28,6 +28,7 @@ export class SimGraficaComponent implements AfterViewInit {
   lClients: Client[];
   dist1 = '';
   dist2 = '';
+  clientProcesar = '';
 
   ngAfterViewInit() { // wait for the view to init before using the element
     this.clients = [];
@@ -55,9 +56,10 @@ export class SimGraficaComponent implements AfterViewInit {
     this.animate();
   }
 
-  setDistText(a, b) {
+  setDistText(a, b, cli) {
     this.dist1 = a;
     this.dist2 = b;
+    this.clientProcesar = cli;
   }
 
   getColor() {
@@ -84,6 +86,7 @@ export class SimGraficaComponent implements AfterViewInit {
   getClientPosition(i) {
     const p: Point = new Point();
     if (i === 1) {
+
       p.y = this.refpointY;
       p.x = this.width * 0.75;
     } else {
@@ -124,8 +127,15 @@ export class SimGraficaComponent implements AfterViewInit {
 
   public push() {
     const pos: Point = this.getClientPosition(this.clients.length);
-    const client = new Client(this.context, this.getColor(), this.randomIntFromInterval(this.width * 0.1, pos.x),
-      this.height + 2 * this.circleRadio, this.circleRadio);
+    let client = null;
+    if (this.clients.length <= this.horizontalSpaces) {
+      client = new Client(this.context, this.getColor(), -this.spacesize,
+        this.refpointY , this.circleRadio);
+    } else {
+      client = new Client(this.context, this.getColor(), this.randomIntFromInterval(this.width * 0.1, pos.x),
+        this.height + 2 * this.circleRadio, this.circleRadio);
+    }
+
     client.setNewPos(pos.x, pos.y);
     this.clients.push(client);
 
@@ -162,8 +172,14 @@ export class SimGraficaComponent implements AfterViewInit {
     this.context.font = '15px Arial';
     this.context.fillStyle = '#2E7D32';
     this.context.textAlign = 'center';
-    this.context.fillText('Clientes Procesados', this.width * 0.75, (this.height * 0.5));
-    this.context.fillText(this.lClients.length.toString(), this.width * 0.75, (this.height * 0.5) + 20);
+    this.context.fillText('Clientes Procesados', this.width * 0.75, (this.height * 0.1) + 20);
+    this.context.fillText(this.lClients.length.toString(), this.width * 0.75, (this.height * 0.1) + 40);
+
+
+    this.context.fillText('Clientes en cola', this.width * 0.25, (this.height * 0.1) + 20);
+    this.context.fillText(this.clients.length.toString(), this.width * 0.25, (this.height * 0.1) + 40);
+
+    this.context.fillText(this.clientProcesar, this.width * 0.75, (this.height * 0.5) + 115);
 
     this.context.beginPath();
     this.context.rect(this.width * 0.75 - this.serverSize / 2, (this.height * 0.20), this.serverSize, this.serverSize);
