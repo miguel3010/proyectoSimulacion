@@ -26,6 +26,8 @@ export class SimGraficaComponent implements AfterViewInit {
   serverSize: number;
   clients: Client[];
   lClients: Client[];
+  dist1 = '';
+  dist2 = '';
 
   ngAfterViewInit() { // wait for the view to init before using the element
     this.clients = [];
@@ -52,6 +54,12 @@ export class SimGraficaComponent implements AfterViewInit {
 
     this.animate();
   }
+
+  setDistText(a, b) {
+    this.dist1 = a;
+    this.dist2 = b;
+  }
+
   getColor() {
     return 'rgb(0,0,' + Math.floor(Math.random() * 255) + ')';
   }
@@ -133,18 +141,25 @@ export class SimGraficaComponent implements AfterViewInit {
     this.context.strokeStyle = '#1E88E5';
     this.context.stroke();
     this.context.shadowBlur = 0;
-    this.context.font = '25px Comic Sans MS';
+    this.context.font = '25px Arial';
     this.context.fillStyle = '#2196F3';
     this.context.textAlign = 'center';
     this.context.fillText('Cola', this.width * 0.25, (this.height * 0.10) - 12);
     this.context.fillText('Servidor', this.width * 0.75, (this.height * 0.10) - 12);
-    this.context.font = '12px Comic Sans MS';
+    this.context.font = '15px Arial';
     this.context.fillStyle = '#2E7D32';
     this.context.textAlign = 'center';
-    this.context.fillText('Dist. Poisson', this.width * 0.25, (this.height * 0.15) - 6);
-    this.context.fillText('Dist. Normal', this.width * 0.75, (this.height * 0.15) - 6);
 
-    this.context.font = '15px Comic Sans MS';
+    this.context.fillText('Tiempos entre arribo', this.width * 0.75, (this.height * 0.5) + 40);
+    this.context.fillText('Tiempos de servicio', this.width * 0.75, (this.height * 0.5) + 80);
+
+    this.context.font = '12px Arial';
+    this.context.fillStyle = '#2E7D32';
+    this.context.textAlign = 'center';
+    this.context.fillText(this.dist2, this.width * 0.75, (this.height * 0.5) + 55);
+    this.context.fillText(this.dist1, this.width * 0.75, (this.height * 0.5) + 95);
+
+    this.context.font = '15px Arial';
     this.context.fillStyle = '#2E7D32';
     this.context.textAlign = 'center';
     this.context.fillText('Clientes Procesados', this.width * 0.75, (this.height * 0.5));
@@ -159,7 +174,6 @@ export class SimGraficaComponent implements AfterViewInit {
     this.context.stroke();
 
   }
-
 
   clearall() {
     this.context.clearRect(0, 0, this.width, this.height);

@@ -34,8 +34,23 @@ export class SimulacionComponent implements OnInit {
     }, error => {
       alert('Falló conexion con el servidor');
     });
+    this.api.get_Parameters().subscribe(response => {
+      this.grafico.setDistText(this.getDist(response.json().dist_Server.dist), this.getDist(response.json().dist_cola.dist));
+    }, error => {
+      alert('Falló conexion con el servidor');
+    });
 
   }
+
+  getDist(i) {
+    switch (i) {
+      case 0: return 'Dist. Normal';
+      case 1: return 'Dist. Uniforme';
+      case 2: return 'Dist. Poisson';
+    }
+    return '';
+  }
+
   startAnimation() {
     const timerInitialTime = new Date(this.procesos[0].h_arribo);
     timerInitialTime.setHours(0); timerInitialTime.setMinutes(0); timerInitialTime.setSeconds(0); timerInitialTime.setMilliseconds(0);
