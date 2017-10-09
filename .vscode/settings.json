@@ -6,7 +6,8 @@
         "-p",
         "*_test.py"
     ],
-    "python.unitTest.unittestEnabled": true,
+    "python.unitTest.unittestEnabled": false,
     "python.unitTest.nosetestsEnabled": false,
-    "python.unitTest.pyTestEnabled": false
+    "python.unitTest.pyTestEnabled": false,
+    "python.unitTest.promptToConfigure": false
 }
