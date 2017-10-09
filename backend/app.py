@@ -1,17 +1,25 @@
 import webbrowser
-from flask import Flask,json, request 
+from flask import Flask,json, request, current_app
 from model.parametros import Parametros
 from model.Estadisticas import Estadisticas
 from simulador import Simulador
 from Analisis import Analisis
-
-from flask_cors import CORS  # This is the magic
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+#only for Debug mode
+#from flask_cors import CORS  # This is the magic
+#cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 _parameters = Parametros() 
 resultados = []
 estadisticas = Estadisticas()
+@app.route('/', methods=['GET'])
+def index():
+    return current_app.send_static_file('index.html')
+
+@app.route('/static/<string:page_name>', methods=['GET'])
+def render_static(page_name):
+    return current_app.send_static_file(page_name)
+
 
 @app.route('/api/parametros', methods=['GET'])
 def get_Parameters():
