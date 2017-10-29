@@ -10,6 +10,15 @@ Desarrollado en Python para el Backend empleando el Framework Flask, y Angular 4
 Simulation of a discrete system of 1 - queue - 1 server.
 Developed in Python for the Backend using the Flask Framework, and Angular 4 for the Frontend.
 
+## ScreenShots / Capturas
+![Image](https://github.com/miguel3010/proyectoSimulacion/blob/master/Screenshot-2017-10-28%20Presentaci%C3%B3n.png)
+
+![Image](https://github.com/miguel3010/proyectoSimulacion/blob/master/Screenshot-2017-10-28%20Simulaci%C3%B3n.png)
+
+![Image](https://github.com/miguel3010/proyectoSimulacion/blob/master/Screenshot-2017-10-28%20Simulaci%C3%B3n2.png)
+
+![Image](https://github.com/miguel3010/proyectoSimulacion/blob/master/Screenshot-2017-10-28%20Estad%C3%ADsticas.png)
+
 ### Prerequisites / Prerequisitos
 
 Todo lo que necesitas instalar para la configuración del proyecto.
