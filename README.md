@@ -83,7 +83,7 @@ Add to all local url in index.html the prefix static/<prev_url>
 ## Autores / Authors
 
 * **Miguel Ángel Campos** - *Fullstack Developer* - [Twitter](https://twitter.com/Miguel_Angel_30)
-* **Luis Yao** - *Fullstack Developer* - [Twitter](https://github.com/Yaito)
+* **Luis Yao** - *Fullstack Developer* - [Twitter](https://twitter.com/notLwiz)
 
 ## Agradecimientos / Acknowledgments
 
